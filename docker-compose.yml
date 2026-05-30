@@ -1,0 +1,14 @@
+services:
+  investlens.gateway:
+    image: ${DOCKER_REGISTRY-}investlensgateway
+    build:
+      context: .
+      dockerfile: src/InvestLens.Gateway/Dockerfile
+
+  investlens.backend:
+    image: ${DOCKER_REGISTRY-}investlensbackend
+    build:
+      context: .
+      dockerfile: src/InvestLens.Backend/Dockerfile
+    depends_on:
+        - investlens.gateway
